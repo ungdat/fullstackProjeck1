@@ -10,6 +10,7 @@ module.exports = {
         firstName: "nhon124",
         lastName: "dat",
         address: "vietnam",
+        phoneNumber: "12665491",
         gender: 1,
         typeRole: "ROLE",
         keyRole: "R1",

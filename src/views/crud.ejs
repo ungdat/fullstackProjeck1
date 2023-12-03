@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CURD</title>
+</head>
+
+<body>
+    <h2>hello day la crud tu view</h2>
+    <form action="/post-crud" method="POST">
+        <input type="email" placeholder="Email" name="email">
+        <input type="password" placeholder="Password" name="password"><br>
+        <input type="text" placeholder="first name" name="firstName">
+        <input type="text" placeholder="last name" name="lastName"><br>
+        <input type="text" placeholder="address" name="address"><br>
+        <input type="number" placeholder="Phone number" name="phoneNumber">
+        <select name="gender" id="">
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+        </select>
+        <select name="roleId" id="">
+            <option value="1">Admin</option>
+            <option value="2">Doctor</option>
+            <option value="3">Patient</option>
+        </select>
+        <button type="submit">ok</button>
+    </form>
+</body>
+
+</html>

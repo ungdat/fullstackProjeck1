@@ -15,6 +15,7 @@ let createNewUser = async (data) => {
         gender: data.gender === 1 ? true : false,
         roleId: data.roleId,
       });
+      console.log("hihi gender ne " + data.gender);
       resolve("ok! reate a new user succeed");
     } catch (e) {
       reject(e);
@@ -36,7 +37,7 @@ let hashUserPassword = (password) => {
 let getAllUser = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let users = db.User.findAll({ raw: true });
+      let users = await db.User.findAll({ raw: true });
       resolve(users);
     } catch (e) {
       reject(e);
@@ -44,7 +45,61 @@ let getAllUser = () => {
   });
 };
 
+let getUserInfoById = (userId) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let user = await db.User.findOne({
+        where: { id: userId },
+        raw: true,
+      });
+
+      if (user) {
+        resolve(user);
+      } else {
+        resolve({});
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
+let updateUserData = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let user = await db.User.findOne({ where: { id: data.id } });
+      if (user) {
+        user.firstName = data.firstName;
+        user.lastName = data.lastName;
+        user.address = data.address;
+
+        await user.save();
+        resolve();
+      } else {
+        resolve();
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  });
+};
+let deleteUserById = (userId) => {
+  return new Promise(async (resolve, rejcet) => {
+    try {
+      let user = await db.User.findOne({ where: { id: userId } });
+      if (user) {
+        await user.destroy();
+      }
+      resolve();
+    } catch (e) {
+      rejcet(e);
+    }
+  });
+};
 module.exports = {
   createNewUser: createNewUser,
   getAllUser: getAllUser,
+  getUserInfoById: getUserInfoById,
+  updateUserData: updateUserData,
+  deleteUserById: deleteUserById,
 };
